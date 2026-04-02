@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>部件/字头检索（静态页）</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>部件/字头检索</h1>
+      <p class="subtitle">使用 `data/Chinese_components_recursive_compact.json` 生成索引后检索（纯静态前端）。</p>
+      <p class="hint">建议用本地静态服务器运行：`python -m http.server`，避免 `file://` 下 `fetch` 受限。</p>
+    </header>
+
+    <main class="app">
+      <section class="panel">
+        <h2>查找包含某个部件的字</h2>
+
+        <div class="form-row">
+          <label for="componentInput">部件</label>
+          <input id="componentInput" type="text" maxlength="2" placeholder="输入一个部件（通常为 1 个汉字）" />
+          <button id="btnSearch1" class="btn-primary">筛选</button>
+        </div>
+
+        <div class="form-row">
+          <span class="label">层级筛选</span>
+          <label class="radio"><input type="radio" name="layerMode1" value="first" /> 仅第一层</label>
+          <label class="radio"><input type="radio" name="layerMode1" value="all" checked /> 全部层级</label>
+          <label class="radio"><input type="radio" name="layerMode1" value="range" /> 区间</label>
+          <div class="range">
+            <input id="layerStart1" type="number" min="1" step="1" value="1" />
+            <span>到</span>
+            <input id="layerEnd1" type="number" min="1" step="1" value="1" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <span class="label">通用规范字ID</span>
+          <input id="idStart1" type="text" inputmode="numeric" placeholder="起始号" style="width:140px;" />
+          <span>到</span>
+          <input id="idEnd1" type="text" inputmode="numeric" placeholder="结束号" style="width:140px;" />
+        </div>
+
+        <div class="form-row">
+          <span class="label">结构</span>
+          <select id="structureSelect1" style="width:240px;">
+            <option value="">不限</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <span class="label">笔画数</span>
+          <input id="strokeMin1" type="number" min="0" step="1" value="0" />
+          <span>到</span>
+          <input id="strokeMax1" type="number" min="0" step="1" value="24" />
+        </div>
+
+        <div class="form-row">
+          <label for="topN1">返回前 N</label>
+          <input id="topN1" type="number" min="1" step="1" value="20" />
+          <label for="sort1">排序</label>
+          <select id="sort1">
+            <option value="count_desc_directUnique_desc_minDepth_asc">
+              包含次数优先 + 部件总部件数优先 + 最早层级靠前
+            </option>
+            <option value="count_desc_directTotal_desc_minDepth_asc">
+              包含次数优先 + 第一层出现总次数优先 + 最早层级靠前
+            </option>
+            <option value="count_desc_depthSpan_desc_minDepth_asc">
+              包含次数优先 + 拆分层级跨度更大优先 + 最早层级靠前
+            </option>
+          </select>
+        </div>
+
+        <div id="status1" class="status"></div>
+        <div id="results1" class="results"></div>
+      </section>
+
+      <section class="panel">
+        <h2>查找部件接近的字</h2>
+
+        <div class="form-row">
+          <label for="headInput">字头</label>
+          <input id="headInput" type="text" maxlength="2" placeholder="输入一个字头（通常为 1 个汉字）" />
+          <button id="btnSearch2" class="btn-primary">查找</button>
+        </div>
+
+        <div class="form-row">
+          <span class="label">层级筛选</span>
+          <label class="radio"><input type="radio" name="layerMode2" value="first" /> 仅第一层</label>
+          <label class="radio"><input type="radio" name="layerMode2" value="all" checked /> 全部层级</label>
+          <label class="radio"><input type="radio" name="layerMode2" value="range" /> 区间</label>
+          <div class="range">
+            <input id="layerStart2" type="number" min="1" step="1" value="1" />
+            <span>到</span>
+            <input id="layerEnd2" type="number" min="1" step="1" value="7" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <span class="label">通用规范字ID</span>
+          <input id="idStart2" type="text" inputmode="numeric" placeholder="起始号" style="width:140px;" />
+          <span>到</span>
+          <input id="idEnd2" type="text" inputmode="numeric" placeholder="结束号" style="width:140px;" />
+        </div>
+
+        <div class="form-row">
+          <span class="label">结构</span>
+          <select id="structureSelect2" style="width:240px;">
+            <option value="">不限</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <span class="label">笔画数</span>
+          <input id="strokeMin2" type="number" min="0" step="1" value="0" />
+          <span>到</span>
+          <input id="strokeMax2" type="number" min="0" step="1" value="24" />
+        </div>
+
+        <div class="form-row">
+          <label for="topN2">返回前 N</label>
+          <input id="topN2" type="number" min="1" step="1" value="12" />
+        </div>
+
+        <div id="status2" class="status"></div>
+        <div id="results2" class="results"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>提示：数据来自你生成的索引 `data/component_index_v1.json`。</div>
+      <div class="muted">说明口径：层级从 1 开始，表示根节点下的“部件键”。</div>
+    </footer>
+
+    <!-- file:// 方式不依赖服务器：先加载打包好的索引 JS -->
+    <script src="./data/component_index_v1.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
+

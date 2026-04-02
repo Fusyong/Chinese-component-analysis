@@ -1,0 +1,128 @@
+:root{
+  --bg:#0b1220;
+  --panel:#111a2e;
+  --text:#e6eefc;
+  --muted:#9fb1d1;
+  --border:#223255;
+  --accent:#4ea1ff;
+  --accent2:#3de3c1;
+  --danger:#ff5a6a;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+}
+
+.app-header{
+  padding:18px 20px;
+  border-bottom:1px solid var(--border);
+}
+.app-header h1{ margin:0 0 6px 0; font-size:20px; }
+.subtitle{ margin:0 0 8px 0; color:var(--muted); }
+.hint{ margin:0; color:var(--muted); font-size:13px; }
+
+.app{
+  padding:16px 20px 30px;
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:18px;
+}
+
+@media (min-width: 1100px){
+  .app{ grid-template-columns: 1fr 1fr; }
+}
+
+.panel{
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.00));
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px 14px 16px;
+}
+.panel h2{ margin:4px 0 12px 0; font-size:16px; }
+
+.form-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 0;
+  flex-wrap:wrap;
+}
+
+label{ color:var(--muted); }
+input[type="text"], input[type="number"], select{
+  background:#0f1730;
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:8px 10px;
+  outline:none;
+}
+input[type="text"]{ width:240px; }
+input[type="number"]{ width:120px; }
+
+.btn-primary{
+  background:var(--accent);
+  color:#062034;
+  border:none;
+  padding:9px 14px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+.btn-primary:active{ transform: translateY(1px); }
+
+.radio{ color:var(--muted); margin-right:6px; }
+.range{ display:flex; align-items:center; gap:8px; }
+.label{ margin-right:4px; }
+
+.status{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:13px;
+  min-height:18px;
+}
+.status.error{ color:var(--danger); }
+
+.results{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.row{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 12px;
+  background:#0f1730;
+}
+.row .top{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.head-char{
+  font-size:24px;
+  /* font-weight:900; */
+  letter-spacing:2px;
+  color:var(--accent2);
+  font-family:"楷体","华文楷体","仿宋","华文仿宋","宋体","华文宋体",serif;
+}
+.meta{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.footer{
+  padding:10px 20px 22px;
+  color:var(--muted);
+  font-size:13px;
+}
+.muted{ color:var(--muted); }
+
