@@ -3,14 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>部件/字头检索（静态页）</title>
+    <title>以部件查字</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <header class="app-header">
-      <h1>部件/字头检索</h1>
-      <p class="subtitle">使用 `data/Chinese_components_recursive_compact.json` 生成索引后检索（纯静态前端）。</p>
-      <p class="hint">建议用本地静态服务器运行：`python -m http.server`，避免 `file://` 下 `fetch` 受限。</p>
+      <h1>以部件查字</h1>
     </header>
 
     <main class="app">
@@ -130,8 +128,6 @@
     </main>
 
     <footer class="footer">
-      <div>提示：数据来自你生成的索引 `data/component_index_v1.json`。</div>
-      <div class="muted">说明口径：层级从 1 开始，表示根节点下的“部件键”。</div>
     </footer>
 
     <!-- file:// 方式不依赖服务器：先加载打包好的索引 JS -->

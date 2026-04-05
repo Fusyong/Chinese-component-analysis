@@ -1,12 +1,12 @@
 :root{
-  --bg:#0b1220;
-  --panel:#111a2e;
-  --text:#e6eefc;
-  --muted:#9fb1d1;
-  --border:#223255;
-  --accent:#4ea1ff;
-  --accent2:#3de3c1;
-  --danger:#ff5a6a;
+  --bg:#eef2f9;
+  --panel:#ffffff;
+  --text:#1a2332;
+  --muted:#5c6b7a;
+  --border:#c8d4e6;
+  --accent:#2563eb;
+  --head-pink:#b03066;
+  --danger:#c41e3a;
 }
 
 *{ box-sizing:border-box; }
@@ -38,10 +38,11 @@ body{
 }
 
 .panel{
-  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.00));
+  background:linear-gradient(180deg, #ffffff, #f7f9fc);
   border:1px solid var(--border);
   border-radius:14px;
   padding:14px 14px 16px;
+  box-shadow:0 1px 3px rgba(26,35,50,0.06);
 }
 .panel h2{ margin:4px 0 12px 0; font-size:16px; }
 
@@ -55,25 +56,30 @@ body{
 
 label{ color:var(--muted); }
 input[type="text"], input[type="number"], select{
-  background:#0f1730;
+  background:#ffffff;
   color:var(--text);
   border:1px solid var(--border);
   border-radius:10px;
   padding:8px 10px;
   outline:none;
 }
+input[type="text"]:focus, input[type="number"]:focus, select:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(37,99,235,0.15);
+}
 input[type="text"]{ width:240px; }
 input[type="number"]{ width:120px; }
 
 .btn-primary{
   background:var(--accent);
-  color:#062034;
+  color:#ffffff;
   border:none;
   padding:9px 14px;
   border-radius:10px;
   font-weight:700;
   cursor:pointer;
 }
+.btn-primary:hover{ filter:brightness(1.05); }
 .btn-primary:active{ transform: translateY(1px); }
 
 .radio{ color:var(--muted); margin-right:6px; }
@@ -99,7 +105,7 @@ input[type="number"]{ width:120px; }
   border:1px solid var(--border);
   border-radius:12px;
   padding:10px 12px;
-  background:#0f1730;
+  background:#f8fafc;
 }
 .row .top{
   display:flex;
@@ -111,7 +117,7 @@ input[type="number"]{ width:120px; }
   font-size:24px;
   /* font-weight:900; */
   letter-spacing:2px;
-  color:var(--accent2);
+  color:var(--head-pink);
   font-family:"楷体","华文楷体","仿宋","华文仿宋","宋体","华文宋体",serif;
 }
 .meta{
